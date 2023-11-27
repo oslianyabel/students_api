@@ -23,6 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('/matter', MatterController::class);
 Route::resource('/student', StudentController::class);
-Route::resource('/profesor', ProfesorController::class);
+Route::resource('/teacher', TeacherController::class);
 
 //Route::put("/matter/{$id}", [MatterController::class,"update"]);

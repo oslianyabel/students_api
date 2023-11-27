@@ -15,6 +15,11 @@ class StudentController extends Controller
         return response()->json(student::all());
     }
 
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
