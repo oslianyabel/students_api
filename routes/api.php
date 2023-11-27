@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\MatterController;
-use App\Http\Controllers\ProfesorController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

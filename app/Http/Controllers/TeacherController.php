@@ -44,7 +44,8 @@ class TeacherController extends Controller
      */
     public function show(teacher $teacher)
     {
-        //
+        $teacher2 = teacher::find($teacher->id);
+        return response()->json($teacher2, 200);
     }
 
     /**

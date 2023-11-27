@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\materia;
 use App\Models\matter;
 use Illuminate\Http\Request;
 
@@ -41,9 +40,10 @@ class MatterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(matter $materia)
+    public function show(matter $matter)
     {
-        //
+        $matter2 = matter::find($matter->id);
+        return response()->json($matter2, 200);
     }
 
     /**
