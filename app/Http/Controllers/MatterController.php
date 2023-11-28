@@ -76,4 +76,10 @@ class MatterController extends Controller
         $materia->delete();
         return response()->json($matter, 200);
     }
+
+    public function search(string $name)
+    {
+        $matter = matter::where("name", $name)->get();
+        return response()->json($matter, 200);
+    }
 }

@@ -15,10 +15,10 @@ class StudentController extends Controller
         return response()->json(student::all());
     }
 
-    public function teachers()
+    /* public function teachers(student $student)
     {
-        return $this->belongsToMany(Teacher::class);
-    }
+        return response()->json($student->teachers(), 200);
+    } */
 
     /**
      * Show the form for creating a new resource.
@@ -85,5 +85,11 @@ class StudentController extends Controller
         $student2 = student::find($student->id);
         $student2->delete();
         return response()->json($student2, 200);
+    }
+
+    public function search(string $name)
+    {
+        $student = student::where("name", $name)->get();
+        return response()->json($student, 200);
     }
 }

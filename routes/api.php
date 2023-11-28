@@ -24,5 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/matter', MatterController::class);
 Route::resource('/student', StudentController::class);
 Route::resource('/teacher', TeacherController::class);
+Route::get("/student/search/{name}", [StudentController::class, "search"]);
+Route::get("/teacher/search/{name}", [TeacherController::class, "search"]);
+Route::get("/matter/search/{name}", [MatterController::class, "search"]);
+//Route::get("/student/teachers/{student}", [TeacherController::class, "teachers"]);
 
 //Route::put("/matter/{$id}", [MatterController::class,"update"]);

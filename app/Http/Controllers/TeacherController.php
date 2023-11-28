@@ -81,4 +81,10 @@ class TeacherController extends Controller
         $teacher2->delete();
         return response()->json($teacher2, 200);
     }
+
+    public function search(string $name)
+    {
+        $teacher = teacher::where("name", $name)->get();
+        return response()->json($teacher, 200);
+    }
 }
