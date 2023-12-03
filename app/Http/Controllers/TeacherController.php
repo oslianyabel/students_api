@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\teacher;
+use App\Models\matter;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -86,5 +87,24 @@ class TeacherController extends Controller
     {
         $teacher = teacher::where("name", $name)->get();
         return response()->json($teacher, 200);
+    }
+
+    public function attach(Request $request)
+    {
+        $teacher = teacher::find($request->teacher_id);
+        $teacher->matters()->attach($request->matter_id);
+        return response()->json($teacher, 200);
+    }
+
+    public function detach(teacher $teacher, matter $matter)
+    {
+        $teacher2 = teacher::find($teacher->id);
+        $teacher2->matters()->detach($matter->id);
+        return response()->json($teacher2, 200);
+    }
+
+    public function matters(teacher $teacher)
+    {
+        return response()->json($teacher->matters, 200);
     }
 }

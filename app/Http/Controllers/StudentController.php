@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\student;
+use App\Models\teacher;
+use App\Models\matter;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -89,7 +91,45 @@ class StudentController extends Controller
 
     public function search(string $name)
     {
-        $student = student::where("name", $name)->get();
+        $student = student::where('name', $name)->get();
         return response()->json($student, 200);
+    }
+
+    public function attach_teacher(Request $request)
+    {
+        $student = student::find($request->student_id);
+        $student->teachers()->attach($request->teacher_id);
+        return response()->json($student, 200);
+    }
+
+    public function detach_teacher(teacher $teacher, student $student)
+    {
+        $student2 = student::find($student->id);
+        $student2->teachers()->detach($teacher->id);
+        return response()->json($student2, 200);
+    }
+
+    public function teachers(student $student)
+    {
+        return response()->json($student->teachers, 200);
+    }
+
+    public function attach_matter(Request $request)
+    {
+        $student = student::find($request->student_id);
+        $student->matters()->attach($request->matter_id);
+        return response()->json($student, 200);
+    }
+
+    public function detach_matter(student $student, matter $matter)
+    {
+        $student2 = student::find($student->id);
+        $student2->matters()->detach($matter->id);
+        return response()->json($student2, 200);
+    }
+
+    public function matters(student $student)
+    {
+        return response()->json($student->matters, 200);
     }
 }
