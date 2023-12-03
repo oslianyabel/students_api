@@ -132,4 +132,21 @@ class StudentController extends Controller
     {
         return response()->json($student->matters, 200);
     }
+
+    public function no_matters(student $student)
+    {
+        $student2 = student::find($student->id);
+        $matters_id = matter::all()->map->only("id")->toArray();
+        $matters = matter::all();
+        $student_matters_id = $student2->matters->map->only("id")->toArray();
+        $ans = [];
+
+        for($i = 0; $i < count($matters_id); $i++) {
+            if (!in_array($matters_id[$i], $student_matters_id)) {
+                $ans[] = $matters[$i];
+            }
+        }
+
+        return response()->json($ans, 200);
+    }
 }

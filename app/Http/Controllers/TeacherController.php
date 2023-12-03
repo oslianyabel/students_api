@@ -107,4 +107,21 @@ class TeacherController extends Controller
     {
         return response()->json($teacher->matters, 200);
     }
+
+    public function no_matters(teacher $teacher)
+    {
+        $teacher2 = teacher::find($teacher->id);
+        $matters_id = matter::all()->map->only("id")->toArray();
+        $matters = matter::all();
+        $student_matters_id = $teacher2->matters->map->only("id")->toArray();
+        $ans = [];
+
+        for($i = 0; $i < count($matters_id); $i++) {
+            if (!in_array($matters_id[$i], $student_matters_id)) {
+                $ans[] = $matters[$i];
+            }
+        }
+
+        return response()->json($ans, 200);
+    }
 }

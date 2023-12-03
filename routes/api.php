@@ -45,3 +45,6 @@ Route::get("/student/search/{name}", [StudentController::class, "search"]);
 Route::get("/teacher/search/{name}", [TeacherController::class, "search"]);
 Route::get("/matter/search/{name}", [MatterController::class, "search"]);
 
+Route::get("/student/nomatter/{student}", [StudentController::class, "no_matters"]);
+Route::get("/teacher/nomatter/{teacher}", [TeacherController::class, "no_matters"]);
+
