@@ -14,6 +14,6 @@ class PhoneNumber implements Rule
 
     public function message()
     {
-        return 'El campo de teléfono debe ser un número de 10 dígitos.';
+        return 'The phone field must be a 10-digit number.';
     }
 }

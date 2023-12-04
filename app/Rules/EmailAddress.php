@@ -14,6 +14,6 @@ class EmailAddress implements Rule
 
     public function message()
     {
-        return 'El campo de correo electrónico debe ser una dirección de correo válida.';
+        return 'The email field must be a valid email address.';
     }
 }
