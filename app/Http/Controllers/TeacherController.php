@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\teacher;
 use App\Models\matter;
 use Illuminate\Http\Request;
+use App\Rules\PhoneNumber;
+use App\Rules\EmailAddress;
 
 class TeacherController extends Controller
 {
@@ -29,6 +31,10 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'phone' => ['required', new PhoneNumber],
+            'email' => ['required', new EmailAddress]
+        ]);
         $teacher = new teacher();
         $teacher->name = $request->name;
         $teacher->last_name = $request->last_name;
@@ -62,6 +68,10 @@ class TeacherController extends Controller
      */
     public function update(Request $request, teacher $teacher)
     {
+        $request->validate([
+            'phone' => ['required', new PhoneNumber],
+            'email' => ['required', new EmailAddress]
+        ]);
         $teacher2 = teacher::find($teacher->id);
         $teacher2->name = $request->name;
         $teacher2->last_name = $request->last_name;

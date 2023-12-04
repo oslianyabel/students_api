@@ -6,6 +6,7 @@ use App\Models\student;
 use App\Models\teacher;
 use App\Models\matter;
 use Illuminate\Http\Request;
+use App\Rules\EmailAddress;
 
 class StudentController extends Controller
 {
@@ -35,6 +36,9 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'email' => ['required', new EmailAddress],
+        ]);
         $student = new student();
         $student->name = $request->name;
         $student->last_name = $request->last_name;
@@ -68,6 +72,9 @@ class StudentController extends Controller
      */
     public function update(Request $request, student $student)
     {
+        $request->validate([
+            'email' => ['required', new EmailAddress],
+        ]);
         $student2 = student::find($student->id);
         $student2->name = $request->name;
         $student2->last_name = $request->last_name;
